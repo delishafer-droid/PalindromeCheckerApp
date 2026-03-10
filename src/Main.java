@@ -1,74 +1,28 @@
-// UC8: Linked List Based Palindrome Checker
+// UC9: Recursive Palindrome Checker
 
 import java.util.Scanner;
 
-class PalindromeChecker8 {
-
-    static class Node {
-        char data;
-        Node next;
-
-        Node(char data) {
-            this.data = data;
-            this.next = null;
-        }
-    }
-    public static boolean isPalindromeUsingLinkedList(String input) {
-
-        if (input == null || input.length() == 0) {
+class PalindromeChecker9 {
+    public static boolean isPalindromeRecursive(String input, int start, int end) {
+        if (start >= end) {
             return true;
         }
 
-        Node head = new Node(input.charAt(0));
-        Node current = head;
-
-        for (int i = 1; i < input.length(); i++) {
-            current.next = new Node(input.charAt(i));
-            current = current.next;
-        }
-        Node slow = head;
-        Node fast = head;
-
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        Node secondHalf = reverse(slow);
-        Node firstHalf = head;
-
-        while (secondHalf != null) {
-            if (firstHalf.data != secondHalf.data) {
-                return false;
-            }
-            firstHalf = firstHalf.next;
-            secondHalf = secondHalf.next;
+        if (input.charAt(start) != input.charAt(end)) {
+            return false;
         }
 
-        return true;
-    }
-
-    private static Node reverse(Node head) {
-        Node prev = null;
-        Node current = head;
-
-        while (current != null) {
-            Node nextNode = current.next;
-            current.next = prev;
-            prev = current;
-            current = nextNode;
-        }
-
-        return prev;
+        return isPalindromeRecursive(input, start + 1, end - 1);
     }
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.print("Input text: ");
-        String input = sc.nextLine();
+        String input = scanner.nextLine();
 
-        boolean result = isPalindromeUsingLinkedList(input);
+        boolean result = isPalindromeRecursive(input, 0, input.length() - 1);
 
         System.out.println("Is it a Palindrome: ");
         if (result) {
@@ -76,5 +30,7 @@ class PalindromeChecker8 {
         } else {
             System.out.print(" false");
         }
+
+        scanner.close();
     }
 }
