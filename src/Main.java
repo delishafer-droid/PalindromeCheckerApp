@@ -1,36 +1,40 @@
-// UC9: Recursive Palindrome Checker
+// UC10: Case-Insensitive & Space-Ignored Palindrome
 
 import java.util.Scanner;
 
 class PalindromeChecker9 {
-    public static boolean isPalindromeRecursive(String input, int start, int end) {
-        if (start >= end) {
-            return true;
+    public static boolean isPalindromeIgnoreCaseAndSpace(String input) {
+
+        String normalized = input.toLowerCase().replaceAll("\\s+", "");
+
+        int left = 0;
+        int right = normalized.length() - 1;
+
+        while (left < right) {
+            if (normalized.charAt(left) != normalized.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
         }
 
-        if (input.charAt(start) != input.charAt(end)) {
-            return false;
-        }
-
-        return isPalindromeRecursive(input, start + 1, end - 1);
+        return true;
     }
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         System.out.print("Input text: ");
-        String input = scanner.nextLine();
+        String input = sc.nextLine();
 
-        boolean result = isPalindromeRecursive(input, 0, input.length() - 1);
+        boolean result = isPalindromeIgnoreCaseAndSpace(input);
 
         System.out.println("Is it a Palindrome: ");
         if (result) {
-            System.out.print(" true");
+            System.out.println(" true (ignoring case & spaces)");
         } else {
-            System.out.print(" false");
+            System.out.println(" false");
         }
-
-        scanner.close();
     }
 }
