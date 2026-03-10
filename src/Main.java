@@ -1,27 +1,25 @@
-// UC4: Character Array Based Palindrome Check
+// UC5: Stack-Based Palindrome Checker
 
 import java.util.Scanner;
+import java.util.Stack;
+class PalindromeCheckerApp{
+    public static boolean isPalindromeUsingStack(String input) {
 
-class PalindromeChecker3 {
+        Stack<Character> stack = new Stack<>();
 
-    public static boolean isPalindromeUsingCharArray(String input) {
+        for (int i = 0; i < input.length(); i++) {
+            stack.push(input.charAt(i));
+        }
 
-        char[] characters = input.toCharArray();
-
-        int left = 0;
-        int right = characters.length - 1;
-
-        while (left < right) {
-
-            if (characters[left] != characters[right]) {
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) != stack.pop()) {
                 return false;
             }
-
-            left++;
-            right--;
         }
+
         return true;
     }
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -29,7 +27,7 @@ class PalindromeChecker3 {
         System.out.print("Input text: ");
         String input = sc.nextLine();
 
-        boolean result = isPalindromeUsingCharArray(input);
+        boolean result = isPalindromeUsingStack(input);
 
         System.out.println("Is it a Palindrome: ");
         if (result) {
