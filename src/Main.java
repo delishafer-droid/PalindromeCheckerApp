@@ -1,40 +1,46 @@
-// UC10: Case-Insensitive & Space-Ignored Palindrome
+// UC11: Object-Oriented Palindrome Service
 
 import java.util.Scanner;
+import java.util.Stack;
 
-class PalindromeChecker9 {
-    public static boolean isPalindromeIgnoreCaseAndSpace(String input) {
+class PalindromeChecker10 {
+    public boolean checkPalindrome(String input) {
 
-        String normalized = input.toLowerCase().replaceAll("\\s+", "");
+        if (input == null) {
+            return false;
+        }
+        String cleaned = input.replaceAll("\\s+", "").toLowerCase();
 
-        int left = 0;
-        int right = normalized.length() - 1;
+        Stack<Character> stack = new Stack<>();
 
-        while (left < right) {
-            if (normalized.charAt(left) != normalized.charAt(right)) {
+        for (char ch : cleaned.toCharArray()) {
+            stack.push(ch);
+        }
+        for (char ch : cleaned.toCharArray()) {
+            if (ch != stack.pop()) {
                 return false;
             }
-            left++;
-            right--;
         }
 
         return true;
     }
-
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
+        PalindromeChecker10 checker = new PalindromeChecker10();
 
         System.out.print("Input text: ");
-        String input = sc.nextLine();
+        String input = scanner.nextLine();
 
-        boolean result = isPalindromeIgnoreCaseAndSpace(input);
+        boolean result = checker.checkPalindrome(input);
 
         System.out.println("Is it a Palindrome: ");
         if (result) {
-            System.out.println(" true (ignoring case & spaces)");
+            System.out.print(" true (ignoring case & spaces)");
         } else {
-            System.out.println(" false");
+            System.out.print(" false");
         }
+
+        scanner.close();
     }
 }
