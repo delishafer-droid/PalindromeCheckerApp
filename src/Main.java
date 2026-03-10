@@ -1,18 +1,24 @@
-// UC5: Stack-Based Palindrome Checker
+// UC6: Queue + Stack Based Palindrome Check
 
 import java.util.Scanner;
 import java.util.Stack;
-class PalindromeCheckerApp{
-    public static boolean isPalindromeUsingStack(String input) {
+import java.util.Queue;
+import java.util.LinkedList;
+
+class PalindromeChecker6 {
+    public static boolean isPalindromeUsingQueueStack(String input) {
 
         Stack<Character> stack = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
 
         for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
+            char ch = input.charAt(i);
+            stack.push(ch);
+            queue.add(ch);
         }
 
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != stack.pop()) {
+        while (!stack.isEmpty()) {
+            if (stack.pop() != queue.remove()) {
                 return false;
             }
         }
@@ -27,7 +33,7 @@ class PalindromeCheckerApp{
         System.out.print("Input text: ");
         String input = sc.nextLine();
 
-        boolean result = isPalindromeUsingStack(input);
+        boolean result = isPalindromeUsingQueueStack(input);
 
         System.out.println("Is it a Palindrome: ");
         if (result) {
