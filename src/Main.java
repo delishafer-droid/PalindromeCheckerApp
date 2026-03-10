@@ -1,27 +1,64 @@
-// UC7: Deque-Based Optimized Palindrome Checker
+// UC8: Linked List Based Palindrome Checker
 
 import java.util.Scanner;
-import java.util.Deque;
-import java.util.ArrayDeque;
-class PalindromeChecker7 {
-    public static boolean isPalindromeUsingDeque(String input) {
 
-        Deque<Character> deque = new ArrayDeque<>();
+class PalindromeChecker8 {
 
-        for (int i = 0; i < input.length(); i++) {
-            deque.addLast(input.charAt(i));
+    static class Node {
+        char data;
+        Node next;
+
+        Node(char data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+    public static boolean isPalindromeUsingLinkedList(String input) {
+
+        if (input == null || input.length() == 0) {
+            return true;
         }
 
-        while (deque.size() > 1) {
-            char front = deque.removeFirst();
-            char rear = deque.removeLast();
+        Node head = new Node(input.charAt(0));
+        Node current = head;
 
-            if (front != rear) {
+        for (int i = 1; i < input.length(); i++) {
+            current.next = new Node(input.charAt(i));
+            current = current.next;
+        }
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node secondHalf = reverse(slow);
+        Node firstHalf = head;
+
+        while (secondHalf != null) {
+            if (firstHalf.data != secondHalf.data) {
                 return false;
             }
+            firstHalf = firstHalf.next;
+            secondHalf = secondHalf.next;
         }
 
         return true;
+    }
+
+    private static Node reverse(Node head) {
+        Node prev = null;
+        Node current = head;
+
+        while (current != null) {
+            Node nextNode = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextNode;
+        }
+
+        return prev;
     }
 
     public static void main(String[] args) {
@@ -31,7 +68,7 @@ class PalindromeChecker7 {
         System.out.print("Input text: ");
         String input = sc.nextLine();
 
-        boolean result = isPalindromeUsingDeque(input);
+        boolean result = isPalindromeUsingLinkedList(input);
 
         System.out.println("Is it a Palindrome: ");
         if (result) {
