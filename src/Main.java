@@ -5,7 +5,7 @@ import java.util.Stack;
 import java.util.Queue;
 import java.util.LinkedList;
 
-class PalindromeChecker6 {
+class PalindromeCheckerApp {
     public static boolean isPalindromeUsingQueueStack(String input) {
 
         Stack<Character> stack = new Stack<>();
