@@ -3,7 +3,7 @@
 import java.util.Scanner;
 import java.util.Deque;
 import java.util.ArrayDeque;
-class PalindromeChecker7 {
+class PalindromeCheckerApp {
     public static boolean isPalindromeUsingDeque(String input) {
 
         Deque<Character> deque = new ArrayDeque<>();
