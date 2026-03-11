@@ -1,41 +1,81 @@
-// UC4: Character Array Based Palindrome Check
-
-import java.util.Scanner;
+import java.util.*;
 
 class PalindromeCheckerApp {
 
-    public static boolean isPalindromeUsingCharArray(String input) {
+class PalindromeCheckerApp {
 
-        char[] characters = input.toCharArray();
+        Map<String, Boolean> results = new LinkedHashMap<>();
+        Map<String, Long> timings = new LinkedHashMap<>();
 
-        int left = 0;
-        int right = characters.length - 1;
+        String[] names = {
+                "ReverseLoop1", "ReverseLoop2", "CharArray",
+                "Stack", "QueueStack", "Deque",
+                "LinkedList", "Recursive",
+                "IgnoreCaseSpace", "CleanedStack"
+        };
 
-        while (left < right) {
+        for (String name : names) {
 
-            if (characters[left] != characters[right]) {
-                return false;
+            long start = System.nanoTime();
+            boolean result = false;
+
+            switch (name) {
+                case "ReverseLoop1":
+                    result = isPalindromeReverseLoop1(input);
+                    break;
+                case "ReverseLoop2":
+                    result = isPalindromeReverseLoop2(input);
+                    break;
+                case "CharArray":
+                    result = isPalindromeUsingCharArray(input);
+                    break;
+                case "Stack":
+                    result = isPalindromeUsingStack(input);
+                    break;
+                case "QueueStack":
+                    result = isPalindromeUsingQueueStack(input);
+                    break;
+                case "Deque":
+                    result = isPalindromeUsingDeque(input);
+                    break;
+                case "LinkedList":
+                    result = isPalindromeUsingLinkedList(input);
+                    break;
+                case "Recursive":
+                    result = isPalindromeRecursive(input, 0, input.length() - 1);
+                    break;
+                case "IgnoreCaseSpace":
+                    result = isPalindromeIgnoreCaseAndSpace(input);
+                    break;
+                case "CleanedStack":
+                    result = checkPalindrome(input);
+                    break;
             }
 
-            left++;
-            right--;
+            long end = System.nanoTime();
+            long duration = end - start;
+
+            results.put(name, result);
+            timings.put(name, duration);
         }
-        return true;
-    }
-    public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        System.out.println("\nPerformance Results");
 
-        System.out.print("Input text: ");
-        String input = sc.nextLine();
+        System.out.printf("%-20s %-20s %-15s%n", "Algorithm", "Execution Time (ns)", "Result");
+        System.out.println("_______________________________________________________________");
 
-        boolean result = isPalindromeUsingCharArray(input);
-
-        System.out.println("Is it a Palindrome: ");
-        if (result) {
-            System.out.print(" true");
-        } else {
-            System.out.print(" false");
+        for (String name : timings.keySet()) {
+            System.out.printf("%-20s %-20d %-15s%n",
+                    name,
+                    timings.get(name),
+                    results.get(name));
         }
+
+        System.out.println("_______________________________________________________________");
+
+        String fastest = Collections.min(timings.entrySet(), Map.Entry.comparingByValue()).getKey();
+        System.out.println("\nFastest Algorithm: " + fastest);
+
+        scanner.close();
     }
 }
