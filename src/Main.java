@@ -1,6 +1,10 @@
 import java.util.*;
 
+import java.util.Scanner;
+import java.util.Deque;
+import java.util.ArrayDeque;
 class PalindromeCheckerApp {
+    public static boolean isPalindromeUsingDeque(String input) {
 
     public static boolean isPalindromeReverseLoop1(String word) {
         String reversed = "";
