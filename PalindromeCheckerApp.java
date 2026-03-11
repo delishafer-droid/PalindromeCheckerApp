@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-class PalindromeChecker8 {
+class PalindromeCheckerApp {
 
     static class Node {
         char data;
