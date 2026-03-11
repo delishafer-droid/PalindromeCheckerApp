@@ -1,6 +1,6 @@
 import java.util.*;
 
-class PalindromeChecker13 {
+class PalindromeCheckerApp {
 
     public static boolean isPalindromeReverseLoop1(String word) {
         String reversed = "";
