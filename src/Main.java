@@ -2,11 +2,7 @@ import java.util.*;
 
 class PalindromeCheckerApp {
 
-    public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Input text: ");
-        String input = scanner.nextLine();
+class PalindromeCheckerApp {
 
         Map<String, Boolean> results = new LinkedHashMap<>();
         Map<String, Long> timings = new LinkedHashMap<>();
