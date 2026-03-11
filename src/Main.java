@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-class PalindromeChecker3 {
+class PalindromeCheckerApp {
 
     public static boolean isPalindromeUsingCharArray(String input) {
 
