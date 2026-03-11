@@ -1,81 +1,23 @@
-import java.util.*;
-
 class PalindromeCheckerApp {
 
-class PalindromeCheckerApp {
+    public static void main(String[] args) {
 
-        Map<String, Boolean> results = new LinkedHashMap<>();
-        Map<String, Long> timings = new LinkedHashMap<>();
+        // Application Welcome Message
+        System.out.println("====================================");
+        System.out.println("   Welcome to Palindrome Checker");
+        System.out.println("====================================");
 
-        String[] names = {
-                "ReverseLoop1", "ReverseLoop2", "CharArray",
-                "Stack", "QueueStack", "Deque",
-                "LinkedList", "Recursive",
-                "IgnoreCaseSpace", "CleanedStack"
-        };
+        // Application Details
+        System.out.println("Application Name : Palindrome Checker App");
+        System.out.println("Version          : 1.0");
+        System.out.println("Author           : System");
 
-        for (String name : names) {
+        System.out.println("------------------------------------");
+        System.out.println("This application will check whether");
+        System.out.println("a given string is a palindrome.");
+        System.out.println("------------------------------------");
 
-            long start = System.nanoTime();
-            boolean result = false;
-
-            switch (name) {
-                case "ReverseLoop1":
-                    result = isPalindromeReverseLoop1(input);
-                    break;
-                case "ReverseLoop2":
-                    result = isPalindromeReverseLoop2(input);
-                    break;
-                case "CharArray":
-                    result = isPalindromeUsingCharArray(input);
-                    break;
-                case "Stack":
-                    result = isPalindromeUsingStack(input);
-                    break;
-                case "QueueStack":
-                    result = isPalindromeUsingQueueStack(input);
-                    break;
-                case "Deque":
-                    result = isPalindromeUsingDeque(input);
-                    break;
-                case "LinkedList":
-                    result = isPalindromeUsingLinkedList(input);
-                    break;
-                case "Recursive":
-                    result = isPalindromeRecursive(input, 0, input.length() - 1);
-                    break;
-                case "IgnoreCaseSpace":
-                    result = isPalindromeIgnoreCaseAndSpace(input);
-                    break;
-                case "CleanedStack":
-                    result = checkPalindrome(input);
-                    break;
-            }
-
-            long end = System.nanoTime();
-            long duration = end - start;
-
-            results.put(name, result);
-            timings.put(name, duration);
-        }
-
-        System.out.println("\nPerformance Results");
-
-        System.out.printf("%-20s %-20s %-15s%n", "Algorithm", "Execution Time (ns)", "Result");
-        System.out.println("_______________________________________________________________");
-
-        for (String name : timings.keySet()) {
-            System.out.printf("%-20s %-20d %-15s%n",
-                    name,
-                    timings.get(name),
-                    results.get(name));
-        }
-
-        System.out.println("_______________________________________________________________");
-
-        String fastest = Collections.min(timings.entrySet(), Map.Entry.comparingByValue()).getKey();
-        System.out.println("\nFastest Algorithm: " + fastest);
-
-        scanner.close();
+        // End of UC1 flow
+        System.out.println("Application started successfully.");
     }
 }
